@@ -18,6 +18,7 @@ public class Loan {
 
     private double amount;
 
+    // Split customer full name into first name and last name
     private String customerFullName;
 
     @ManyToOne(fetch = FetchType.LAZY)

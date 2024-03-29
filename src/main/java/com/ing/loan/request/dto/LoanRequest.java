@@ -13,6 +13,7 @@ public class LoanRequest {
 //    @Max(value = 12000.50, message = "Amount must be less than or equal to 12000.50")
     private double amount;
 
+    // Split customer full name into first name and last name
     private String customerFullName;
 
     @NotNull(message = "Customer Id cannot be null")

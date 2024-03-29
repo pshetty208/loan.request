@@ -20,6 +20,7 @@ public class Customer {
     // Use UUID
     private Long customerId;
 
+    // Split customer full name into first name and last name
     private String customerFullName;
 
     //Other fields - more internal information on the customer
