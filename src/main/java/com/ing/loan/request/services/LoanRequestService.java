@@ -8,6 +8,7 @@ import com.ing.loan.request.models.Loan;
 import com.ing.loan.request.persistence.CustomerRepository;
 import com.ing.loan.request.persistence.LoanRepository;
 import com.ing.loan.request.services.utils.Amount;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,7 @@ public class LoanRequestService implements LoanRequestServiceImpl{
     private CustomerRepository customerRepository;
 
     @Override
+    @Transactional
     public LoanResponse createLoan(LoanRequest loanRequest) throws IncorrectLoanAmountException, CustomerNotFoundException {
         var amount = loanRequest.getAmount();
         var min = Amount.LOAN_MIN.getValue();
@@ -52,6 +54,7 @@ public class LoanRequestService implements LoanRequestServiceImpl{
     }
 
     @Override
+    @Transactional
     public double getLoanAmountByCustomerId(Long customerId) {
         List<Loan> loans = loanRepository.findByCustomerCustomerId(customerId);
         return loans.stream()
