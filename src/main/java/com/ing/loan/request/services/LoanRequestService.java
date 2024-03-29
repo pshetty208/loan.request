@@ -11,6 +11,7 @@ import com.ing.loan.request.services.utils.Amount;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,7 +55,7 @@ public class LoanRequestService implements LoanRequestServiceImpl{
     }
 
     @Override
-    @Transactional
+    @Cacheable(value = "totalLoanAmount", key = "#customerId")
     public double getLoanAmountByCustomerId(Long customerId) {
         List<Loan> loans = loanRepository.findByCustomerCustomerId(customerId);
         return loans.stream()
